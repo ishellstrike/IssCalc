@@ -1,0 +1,38 @@
+Thumbs.db
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.sln.docstates
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+*.vssscc
+$tf*/
+Mork 0.2/Mork 0.2Content/Textures/tileStrip.png
+Mork 0.2/Mork 0.2Content/Textures/Blank_wshop.psd
+Mork 0.2/Mork 0.2Content/Textures/Blank_wall.psd
+Mork 0.2/Mork 0.2Content/Textures/Blank.psd
+Mork 0.2/Mork 0.2Content/Data/standart.odb
+_UpgradeReport_Files/UpgradeReport_Plus.gif
+_UpgradeReport_Files/UpgradeReport_Minus.gif
+_UpgradeReport_Files/UpgradeReport.xslt
+_UpgradeReport_Files/UpgradeReport.css
