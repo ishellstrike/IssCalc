@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IssCalcCore.Tokens
 {
-    public class OperationToken : IToken
+    public class OperationToken : IToken, IDisposable
     {
         private Operations operation;
         public Operations Operation
@@ -86,6 +86,11 @@ namespace IssCalcCore.Tokens
         public override string ToString()
         {
             return OperationAliases.FindAliasString(operation);
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }

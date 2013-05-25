@@ -5,8 +5,7 @@ using System.Text;
 
 namespace IssCalcCore.Tokens
 {
-    public class FunctionToken : IToken
-    {
+    public class FunctionToken : IToken, IDisposable {
 
         private Functions function;
 
@@ -50,6 +49,10 @@ namespace IssCalcCore.Tokens
         public override string ToString()
         {
             return FunctionAliases.FindAliasString(function);
+        }
+
+        public void Dispose() {
+           
         }
     }
 }

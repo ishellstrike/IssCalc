@@ -77,7 +77,7 @@ namespace IssCalcCore
 
                         stack.Push(stackToken);
                     }
-                } else if (token is ValueToken) {//  || token is VariableToken) {
+                } else if (token is ValueToken || token is VariableToken) {
                     output.Add(token);
                 } else {
                     while (stack.Count != 0 && (stackToken = stack.Peek()).Priority >= token.Priority) {
@@ -94,6 +94,102 @@ namespace IssCalcCore
             }
 
             return output;
+        }
+
+        public static double Caclulate(IEnumerable<IToken> form, double x, double y, double p, double p2) {
+            double res = 0;
+
+            Stack<double> values = new Stack<double>();
+            values.Push(0);
+            values.Push(0);
+
+            double first = 0, second = 0;
+
+            foreach (var token in form) {
+                if (token is VariableToken) {
+                    using (VariableToken otoken = token as VariableToken) {
+                        switch (otoken.Var) {
+                            case "x":
+                                values.Push(x);
+                                break;
+                            case "y":
+                                values.Push(y);
+                                break; 
+                            case "e":
+                                values.Push(Math.E);
+                                break;
+                            case "pi":
+                                values.Push(Math.PI);
+                                break;
+                        }
+                    }
+                } else if(token is ValueToken) {
+                    values.Push((token as ValueToken).Number);
+                } else if(token is OperationToken) {
+                    using(OperationToken otoken = token as OperationToken) {
+                        switch (otoken.Operation) {
+                                case Operations.Add:
+                                    first = values.Pop();
+                                    second = values.Pop();
+                                    values.Push(first+second);
+                                break;
+                                case Operations.Mul:
+                                    first = values.Pop();
+                                    second = values.Pop();
+                                    values.Push(first * second);
+                                break;
+                                case Operations.Sub:
+                                    first = values.Pop();
+                                    second = values.Pop();
+                                    values.Push(first - second);
+                                break;
+                                case Operations.Div:
+                                    first = values.Pop();
+                                    second = values.Pop();
+                                    values.Push(first / second);
+                                break;
+                        }
+                    }
+                } else if (token is FunctionToken) {
+                    using (FunctionToken otoken = token as FunctionToken) {
+                        switch (otoken.Function) {
+                            case Functions.Sin:
+                                    first = values.Pop();
+                                    values.Push(Math.Sin(first));
+                                break;
+                            case Functions.Cos:
+                                first = values.Pop();
+                                values.Push(Math.Cos(first));
+                                break;
+                            case Functions.Asin:
+                                first = values.Pop();
+                                values.Push(Math.Asin(first));
+                                break;
+                            case Functions.Tg:
+                                first = values.Pop();
+                                values.Push(Math.Tan(first));
+                                break;
+                            case Functions.Sh:
+                                first = values.Pop();
+                                values.Push(Math.Sinh(first));
+                                break;
+                            case Functions.Ch:
+                                first = values.Pop();
+                                values.Push(Math.Cosh(first));
+                                break;
+                            case Functions.Sqrt:
+                                first = values.Pop();
+                                values.Push(Math.Sqrt(first));
+                                break;
+                        }
+                    }
+                }
+            }
+
+            if (values.Count == 1) {
+                return values.Pop();
+            }
+            return 0;
         }
 
         public static IEnumerable<IToken> StringArrayToTokenArray(IEnumerable<string> str)
@@ -116,14 +212,14 @@ namespace IssCalcCore
                         tokens.Add(new SymbolToken(SymbolAliases.GetToken(s)));
                         continue;
                     }
-
-                    //variable here
-                    continue;
                 }
                 if (FunctionAliases.Contains(s)) {
                     tokens.Add(new FunctionToken(FunctionAliases.GetToken(s)));
                     continue;
                 }
+
+                tokens.Add(new VariableToken(s));
+                continue;
             }
 
             return tokens;

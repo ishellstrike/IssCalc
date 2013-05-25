@@ -16,6 +16,12 @@ namespace IssCalcCore.Tokens
 
                                                                                                     {"arcsin", Functions.Asin},
                                                                                                     {"asin", Functions.Asin},
+
+                                                                                                    {"tg",Functions.Tg},
+                                                                                                    {"ctg",Functions.Ctg},
+                                                                                                    {"sh",Functions.Sh},
+                                                                                                    {"ch",Functions.Ch},
+                                                                                                    {"sqrt",Functions.Sqrt}
                                                                                                  };
         private static IEnumerable<string> aliasesList = aliases.Select(x => x.Key);
 

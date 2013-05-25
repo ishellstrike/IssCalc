@@ -19,12 +19,10 @@ namespace IssCalcCore.Tokens
         /// <summary>
         /// ,
         /// </summary>
-        Comma,
-
+        Comma
     }
 
-    public class SymbolToken : IToken
-    {
+    public class SymbolToken : IToken, IDisposable {
 
         private Symbols symbol;
         private int priority;
@@ -82,6 +80,10 @@ namespace IssCalcCore.Tokens
         public override string ToString()
         {
             return SymbolAliases.FindAliasString(symbol);
+        }
+
+        public void Dispose() {
+            throw new NotImplementedException();
         }
     }
 }

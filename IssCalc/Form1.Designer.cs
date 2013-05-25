@@ -33,6 +33,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // glControl1
@@ -45,6 +47,7 @@
             this.glControl1.TabIndex = 0;
             this.glControl1.VSync = false;
             this.glControl1.Load += new System.EventHandler(this.glControl1_Load);
+            this.glControl1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.glControl1_Scroll);
             this.glControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.glControl1_Paint);
             // 
             // timer1
@@ -77,9 +80,29 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(48, 35);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "a b +";
+            this.label2.Text = "x 1 y 1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(441, 393);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "x 1 y 1";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(441, 406);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "x 1 y 1";
             // 
             // Form1
             // 
@@ -87,6 +110,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(982, 438);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
@@ -94,6 +119,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Scroll += new System.Windows.Forms.ScrollEventHandler(this.glControl1_Scroll);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -107,6 +133,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
 

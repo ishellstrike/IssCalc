@@ -10,5 +10,10 @@ namespace IssCalcCore.Tokens
         Sin,
         Cos,
         Asin,
+        Tg,
+        Ctg,
+        Sh,
+        Ch,
+        Sqrt
     }
 }
