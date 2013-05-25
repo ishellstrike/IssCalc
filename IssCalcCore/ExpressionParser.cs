@@ -100,8 +100,6 @@ namespace IssCalcCore
             double res = 0;
 
             Stack<double> values = new Stack<double>();
-            values.Push(0);
-            values.Push(0);
 
             double first = 0, second = 0;
 
@@ -125,7 +123,7 @@ namespace IssCalcCore
                     }
                 } else if(token is ValueToken) {
                     values.Push((token as ValueToken).Number);
-                } else if(token is OperationToken) {
+                } else if (token is OperationToken && values.Count > 1) {
                     using(OperationToken otoken = token as OperationToken) {
                         switch (otoken.Operation) {
                                 case Operations.Add:
@@ -150,7 +148,7 @@ namespace IssCalcCore
                                 break;
                         }
                     }
-                } else if (token is FunctionToken) {
+                } else if (token is FunctionToken && values.Count > 0) {
                     using (FunctionToken otoken = token as FunctionToken) {
                         switch (otoken.Function) {
                             case Functions.Sin:

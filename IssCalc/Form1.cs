@@ -102,8 +102,8 @@ namespace WindowsFormsApplication1
 
             if (e.Button == MouseButtons.Left) {
                 float an = MathHelper.DegreesToRadians((float) angle);
-                float x = (mlast.X - e.X)/2f;
-                float y = (mlast.Y - e.Y)/2f;
+                float x = (mlast.X - e.X)/200f;
+                float y = (mlast.Y - e.Y)/200f;
                 offset = new Tuple<double, double>(offset.Item1 + x*Math.Cos(an) - y*Math.Sin(an),
                                                    offset.Item2 + x*Math.Sin(an) + y*Math.Cos(an));
 
@@ -142,7 +142,7 @@ namespace WindowsFormsApplication1
 
             for (int i = 0; i < mg.w; i++) {
                 for (int j = 0; j < mg.h; j++) {
-                    mg.data[i * mg.w + j] = ExpressionParser.Caclulate(a, (i+ offset.Item1)/zoom.Item1  - mg.w/2.0, (j+ offset.Item2)/zoom.Item2  - mg.h/2.0, 0, 0);
+                    mg.data[i * mg.w + j] = ExpressionParser.Caclulate(a, ((double)i / mg.w + offset.Item1) / zoom.Item1 - 2.0, ((double)j / mg.h + offset.Item2) / zoom.Item2 - 2.0, 0, 0);
                 }
             }
             NeedRecalc = false;
@@ -448,6 +448,13 @@ namespace WindowsFormsApplication1
         private void glControl1_Scroll(object sender, ScrollEventArgs e)
         {
 
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            mg = new Graph3DData(trackBar1.Value, trackBar1.Value);
+            NeedRecalc = true;
+            label5.Text = string.Format("{0}x{1} {2} triangles", mg.w, mg.h, mg.w * mg.h * 2);
         }
     }
 }
